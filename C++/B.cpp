@@ -1,3 +1,8 @@
+/*                 typo
+We can check if S and T are the same without performing any operation,
+or if S and T coincides when the i-th and (i+1)-th characters are swapped for each i=1,2,бн,(length of S)?1.
+The time complexity is O(N2), where N=(length of S).
+*/
 #include <bits/stdc++.h>
 using namespace std;
 int main(){
