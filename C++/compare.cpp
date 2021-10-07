@@ -1,24 +1,42 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main(){
-    string S,T; cin >> S >> T;
-    string ans = "No";
-    if(S == T) ans = "Yes";
-    for(int i=0; i<S.size(); i++){
-        if(S[i] != T[i]){
-            if(0 < i){
-                swap(S[i-1],S[i]);
-                if(S == T) ans = "Yes";
-                swap(S[i-1],S[i]);
-            }
-            if(i+1 < S.size()){
-                swap(S[i],S[i+1]);
-                if(S == T) ans = "Yes";
-                swap(S[i],S[i+1]);
-            }
-            break;
-        }
+template <typename container>
+void removeEverOtherItem(container & lst){
+    auto itr = lst.begin();
+    //itr ÊÇÒ»¸öcontainer::iterator
+    while(itr!=lst.end){
+        itr = lst.erase(itr);
+        if(itr!=lst.end())
+            ++itr;
     }
-    cout << ans << endl;
+}
+
+template <typename container,typename object>
+void change(container & c,const object & newvalue){
+    typename container::iterator itr = c.begin();
+    while(itr!=c.end())
+        *itr++ = newvalue;
+}
+
+template <typename container>
+auto begin(container & c)-> decltype(c.begin()){
+    return c.begin();
+}
+template <typename container>
+auto begin(const container & c)->decltype(c.begin()){
+    return c.begin();
+}
+
+template <typename container>
+void print(const container &c,ostream &out = cout){
+    if(c.empty())
+        out << "(empty)";
+        else{
+            auto itr = begin(c);
+            out << "[" << *itr++;
+            while(itr!=end(c))
+                out << "," << *itr++;
+            out << "]" << endl;
+        }
 }
