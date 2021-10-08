@@ -49,6 +49,8 @@ class list
             {}
             friend class list<object>;
     };
+    //list 类的内嵌 const_iterator 类
+
     class iterator : public const_iterator{
         public:
         iterator()
@@ -77,6 +79,7 @@ class list
         {}
         friend class list<object>;
     };
+    //list 类的嵌套 iterator 类
 
     public:
     list(){
@@ -114,6 +117,7 @@ class list
         std::swap(tail, rhs.tail);
         return *this;
     }
+    //list 类的构造函数，五大函数
 
     iterator begin(){
         return {head->next};
@@ -171,15 +175,32 @@ class list
         erase(--end());
     }
 
+    //在 itr前插入 x
     iterator insert(iterator itr,const object & x){
         node *p = itr.current;
         thesize++;
         return {p->prev = p->prev->next = new node{x, p->prev, p}};
     }
+    //在 itr前插入 x
     iterator insert(iterator itr,object && x){
         node *p = itr.current;
         thesize++;
         return {p->prev = p->prev->next = new node{std::move(x), p->prev, p}};
+    }
+    //删除在 itr处的项
+    iterator erase(iterator itr){
+        node *p = itr.current;
+        iterator retval{p->next};
+        p->prev->next = p->next;
+        p->next->prev = p->prev;
+        delete p;
+        thesize--;
+        return retval;
+    }
+    iterator erase(iterator from,iterator to){
+        for (iterator itr = from; itr != to;)
+            itr = erase(itr);
+        return to;
     }
 
     private:
@@ -193,4 +214,5 @@ class list
             head->next = tail;
             tail->prev = head;
     }
+    //init 例程
 };
