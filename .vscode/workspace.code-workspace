@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "..\\C"
+		},
+		{
+			"path": "..\\C++"
+		},
+		{
+			"path": "..\\mysql"
+		},
+		{
+			"path": "..\\py"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "php"
+	}
+}

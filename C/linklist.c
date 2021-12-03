@@ -1,23 +1,58 @@
+/*
+        求链式线性表的倒数第 K项 (20 分)
+-------------------------------------------------
+  https://pintia.cn/problem-sets/15/problems/826
+-------------------------------------------------
+    Input:  4 1 2 3 4 5 6 7 8 9 0 -1
+    Output:  7
+*/
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-typedef int elemtype;
-typedef struct lnode{
-    elemtype data;
-    struct londe *next;
-} lnode;
-lnode *l;
-lnode * creat_l();
-void out_l(lnode *l);
-void insert_l(lnode *l, int i, elemtype e);
-elemtype delete_l(lnode *l, int i);
-int locat_l(lnode *l, elemtype e);
-main(){
-    int i, k, loc;
-    elemtype e, x;
-    char ch;
-    do{
-        printf("\n\n\n");
-        printf("\n\n  ");
+
+typedef int Elemtype;
+typedef struct Node *PtrToNode;
+struct Node
+{
+    Elemtype Data;
+    PtrToNode Next;
+};
+typedef PtrToNode List;
+
+Elemtype Find(List L, int m)
+{
+    List p1, p2;
+    int cnt = 0;
+    p1 = p2 = L;
+    while (p1 && (++cnt <= m))
+        p1 = p1->Next;
+    if (cnt <= m)
+    {
+        printf("NULL\n");
+        return 0;
     }
-} 
+    while (p1)
+    {
+        p1 = p1->Next;
+        p2 = p2->Next;
+    }
+    return p2->Data;
+}
+
+int main()
+{
+    int k;
+    scanf("%d", &k);
+    List head = (List)malloc(sizeof(struct Node));
+    head->Next = NULL;
+    int tmp;
+    while (scanf("%d", &tmp) && tmp >= 0)
+    {
+        List L = (List)malloc(sizeof(struct Node));
+        L->Next = NULL;
+        L->Data = tmp;
+        L = L->Next;
+        head->Next = L;
+    }
+    Find(head, k);
+    return 0;
+}
