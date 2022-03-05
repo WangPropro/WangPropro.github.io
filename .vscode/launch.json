@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Study",
+            "request": "launch",
+            "mainClass": "Study",
+            "projectName": "code_65011a99"
+        },
+        {
+            "type": "java",
+            "name": "Launch study",
+            "request": "launch",
+            "mainClass": "study",
+            "projectName": "code_65011a99"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
